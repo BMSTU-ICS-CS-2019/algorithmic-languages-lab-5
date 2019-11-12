@@ -98,8 +98,6 @@ void task_lambda();
 void task_io();
 
 int main() {
-    unordered_multimap<int, string> original_map;
-
     while (true) {
         cout << "Select task group (`lambda`, `io` or `exit`):" << endl;
         string mode;
