@@ -2,3 +2,9 @@ language: cpp
 compiler:
   - clang
   - gcc
+
+cache:
+  - directories:
+      - $HOME/.cache
+
+script: cmake --build .
