@@ -7,4 +7,4 @@ cache:
   - directories:
       - $HOME/.cache
 
-script: cmake --build .
+script: cmake --build ./cmake-build-debug  --target Lab5 -- -j $(nproc)
