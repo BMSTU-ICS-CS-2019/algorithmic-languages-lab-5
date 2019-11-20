@@ -64,37 +64,6 @@ void student::read_from_console() {
     cin __STUDENT_SUGARED_READ(this->);
 }
 
-void student::read_from_file(const string &filename, const bool binary) {
-    ifstream input;
-
-    if (binary) {
-        input.open(filename, fstream::in | fstream::binary);
-        read_binary(input, *this);
-    } else {
-        input.open(filename, fstream::in);
-        input __STUDENT_SUGARED_READ(this->);
-    }
-
-    input.close();
-}
-
-void student::append_to_console() {
-    cout __STUDENT_SUGARED_WRITE(this->) << endl;
-}
-
-void student::append_to_file(const string &filename, bool binary) {
-    ofstream output;
-
-    if (binary) {
-        output.open(filename, fstream::out | fstream::binary);
-        write_binary(output, *this);
-    } else {
-        output __STUDENT_SUGARED_WRITE(this->) << endl;
-    }
-
-    output.close();
-}
-
 void write_students_to_file(const string &filename, vector<student> &students, bool binary) {
     ofstream output;
 
