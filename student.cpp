@@ -14,32 +14,32 @@ using std::ifstream;
 using std::ofstream;
 
 static void write_binary(ofstream &output, const unsigned short &value) {
-    output.write((char*) &value, sizeof value);
+    output.write((char *) &value, sizeof value);
 }
 
 static void write_binary(ofstream &output, const float &value) {
-    output.write((char*) &value, sizeof value);
+    output.write((char *) &value, sizeof value);
 }
 
-static void write_binary(ofstream &output, const string& string) {
+static void write_binary(ofstream &output, const string &string) {
     const auto length = string.length();
-    output.write((char*) &length, sizeof length);
+    output.write((char *) &length, sizeof length);
     output.write(string.c_str(), length);
 }
 
 static void read_binary(ifstream &input, const unsigned short &value) {
-    input.read((char*) &value, sizeof value);
+    input.read((char *) &value, sizeof value);
 }
 
 static void read_binary(ifstream &input, const float &value) {
-    input.read((char*) &value, sizeof value);
+    input.read((char *) &value, sizeof value);
 }
 
-static void read_binary(ifstream &input, string& value) {
+static void read_binary(ifstream &input, string &value) {
     typeof value.length() length;
-    input.read((char*) &length, sizeof length);
+    input.read((char *) &length, sizeof length);
     value.resize(length);
-    input.read((char*) value.c_str(), length);
+    input.read((char *) value.c_str(), length);
 }
 
 static void write_binary(ofstream &output, const student &student) {
@@ -51,17 +51,17 @@ static void write_binary(ofstream &output, const student &student) {
     write_binary(output, student.average_score);
 }
 
-static void read_binary(ifstream &input, student& student) {
-    read_binary(input, (string&) student.name);
-    read_binary(input, (string&) student.surname);
-    read_binary(input, (string&) student.patronymic);
+static void read_binary(ifstream &input, student &student) {
+    read_binary(input, (string &) student.name);
+    read_binary(input, (string &) student.surname);
+    read_binary(input, (string &) student.patronymic);
     read_binary(input, student.age);
     read_binary(input, student.studied_lessons);
     read_binary(input, student.average_score);
 }
 
 void student::read_from_console() {
-    cin __STUDENT_SUGARED_READ(this ->);
+    cin __STUDENT_SUGARED_READ(this->);
 }
 
 void student::read_from_file(const string &filename, const bool binary) {
@@ -72,14 +72,14 @@ void student::read_from_file(const string &filename, const bool binary) {
         read_binary(input, *this);
     } else {
         input.open(filename, fstream::in);
-        input __STUDENT_SUGARED_READ(this ->);
+        input __STUDENT_SUGARED_READ(this->);
     }
 
     input.close();
 }
 
 void student::append_to_console() {
-    cout __STUDENT_SUGARED_WRITE(this ->);
+    cout __STUDENT_SUGARED_WRITE(this->);
 }
 
 void student::append_to_file(const string &filename, bool binary) {
@@ -89,13 +89,13 @@ void student::append_to_file(const string &filename, bool binary) {
         output.open(filename, fstream::out | fstream::app | fstream::binary);
         write_binary(output, *this);
     } else {
-        output __STUDENT_SUGARED_WRITE(this ->);
+        output __STUDENT_SUGARED_WRITE(this->);
     }
 
     output.close();
 }
 
-void write_students_to_file(const string &filename, vector<student>& students, bool binary) {
+void write_students_to_file(const string &filename, vector<student> &students, bool binary) {
     ofstream output;
 
     if (binary) {

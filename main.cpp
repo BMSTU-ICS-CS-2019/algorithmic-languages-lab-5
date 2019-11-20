@@ -105,7 +105,7 @@ int main() {
 
         if (mode == "lambda") task_lambda();
         else if (mode == "io") task_io();
-        if (mode == "exit") {
+        else if (mode == "exit") {
             cout << "Goodbye!" << endl;
             return 0;
         } else cout << "Unknown mode" << endl;
@@ -188,6 +188,10 @@ void task_lambda() {
 }
 
 void task_io() {
+    bool binary;
+    cout << "Would you like to enable binary IO mode (0 or 1): ";
+    cin >> binary;
+
     string action;
     cout << "Select action (`read` or `write`)" << endl;
     cin >> action;
@@ -200,12 +204,11 @@ void task_io() {
         cout << "Got file name `" << file_name << "`" << endl;
 
         cout << "Reading students..." << endl;
-        auto students = read_students_from_file(file_name);
+        auto students = read_students_from_file(file_name, binary);
         {
             int i = 0;
             for (auto &student : students) cout << "Student #" << ++i << ": " << student.to_string() << endl;
         }
-        cout << "Read students: " << students.size() << endl;
     } else if (action == "write") {
         size_t student_count;
         cout << "Enter the amount of students: ";
@@ -231,6 +234,6 @@ void task_io() {
 
         cin.ignore();
         getline(cin, file_name);
-        write_students_to_file(file_name, students);
+        write_students_to_file(file_name, students, binary);
     } else cout << "Unknown action" << endl;
 }
