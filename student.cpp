@@ -3,7 +3,7 @@
 #include <iostream>
 #include <fstream>
 
-#define __STUDENT_SUGARED_WRITE(target) << target name << " " << target surname << " " << target patronymic << " " << target age << " " << target studied_lessons << " " << target average_score << " " << endl
+#define __STUDENT_SUGARED_WRITE(target) << target name << " " << target surname << " " << target patronymic << " " << target age << " " << target studied_lessons << " " << target average_score
 #define __STUDENT_SUGARED_READ(target) >> target name >> target surname >> target patronymic >> target age >> target studied_lessons >> target average_score
 
 using std::cin;
@@ -79,7 +79,7 @@ void student::read_from_file(const string &filename, const bool binary) {
 }
 
 void student::append_to_console() {
-    cout __STUDENT_SUGARED_WRITE(this->);
+    cout __STUDENT_SUGARED_WRITE(this->) << endl;
 }
 
 void student::append_to_file(const string &filename, bool binary) {
@@ -89,7 +89,7 @@ void student::append_to_file(const string &filename, bool binary) {
         output.open(filename, fstream::out | fstream::binary);
         write_binary(output, *this);
     } else {
-        output __STUDENT_SUGARED_WRITE(this->);
+        output __STUDENT_SUGARED_WRITE(this->) << endl;
     }
 
     output.close();
@@ -103,7 +103,17 @@ void write_students_to_file(const string &filename, vector<student> &students, b
         for (auto &student : students) write_binary(output, student);
     } else {
         output.open(filename, fstream::out);
-        for (auto &student : students) output __STUDENT_SUGARED_WRITE(student.);
+
+        auto student_iterator = students.begin();
+        const auto student_iterator_end = students.end();
+
+        bool do_continue = student_iterator != student_iterator_end;
+        while (do_continue) {
+            const auto student = *student_iterator;
+
+            output __STUDENT_SUGARED_WRITE(student.);
+            if ((do_continue = (++student_iterator) != student_iterator_end)) output << endl;
+        }
     }
 
     output.close();
