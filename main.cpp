@@ -38,7 +38,7 @@ string to_string(const vector<E> vector) {
             if (not_first) value += ", ";
             else not_first = true;
 
-            value += element;
+            value += to_string(element);
         }
     }
     return value + "}";
@@ -53,7 +53,7 @@ string to_string(const unordered_set<E> vector) {
             if (not_first) value += ", ";
             else not_first = true;
 
-            value += element;
+            value += to_string(element);
         }
     }
     return value + "}";
