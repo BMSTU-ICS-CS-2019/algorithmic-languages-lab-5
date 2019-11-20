@@ -86,7 +86,7 @@ void student::append_to_file(const string &filename, bool binary) {
     ofstream output;
 
     if (binary) {
-        output.open(filename, fstream::out | fstream::app | fstream::binary);
+        output.open(filename, fstream::out | fstream::binary);
         write_binary(output, *this);
     } else {
         output __STUDENT_SUGARED_WRITE(this->);
@@ -99,10 +99,10 @@ void write_students_to_file(const string &filename, vector<student> &students, b
     ofstream output;
 
     if (binary) {
-        output.open(filename, fstream::out | fstream::binary | fstream::app);
+        output.open(filename, fstream::out | fstream::binary );
         for (auto &student : students) write_binary(output, student);
     } else {
-        output.open(filename, fstream::out | fstream::app);
+        output.open(filename, fstream::out);
         for (auto &student : students) output __STUDENT_SUGARED_WRITE(student.);
     }
 
