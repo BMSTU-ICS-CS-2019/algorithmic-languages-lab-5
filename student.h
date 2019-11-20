@@ -17,12 +17,6 @@ struct student {
 
     void read_from_console();
 
-    void read_from_file(const string &filename, bool binary = true);
-
-    void append_to_console();
-
-    void append_to_file(const string &filename, bool binary = true);
-
     [[nodiscard]] string to_string() const {
         return "student {  name = " + name + ", surname = " + surname + ", patronymic = " + patronymic
                + ", age = " + std::to_string(age)
