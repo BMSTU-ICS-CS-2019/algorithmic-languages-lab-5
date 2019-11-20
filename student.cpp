@@ -99,7 +99,7 @@ void write_students_to_file(const string &filename, vector<student> &students, b
     ofstream output;
 
     if (binary) {
-        output.open(filename, fstream::out | fstream::binary );
+        output.open(filename, fstream::out | fstream::binary);
         for (auto &student : students) write_binary(output, student);
     } else {
         output.open(filename, fstream::out);
